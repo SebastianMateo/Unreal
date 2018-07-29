@@ -12,6 +12,7 @@ class UTankBarrel;
 class UTankTurret;
 class AProjectile;
 class UTankAimingComponent;
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANKS_API ATank : public APawn
@@ -42,6 +43,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UTankAimingComponent *TankAimingComponent = nullptr;
+	UTankMovementComponent *TankMovementComponent = nullptr;
 
 private:
 

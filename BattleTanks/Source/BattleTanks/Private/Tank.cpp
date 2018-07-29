@@ -2,6 +2,7 @@
 
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "TankMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "Engine/World.h"
@@ -46,8 +47,6 @@ void ATank::AimAt(FVector HitLocation)
 void ATank::Fire()
 {
 	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-
-	UE_LOG(LogTemp, Warning, TEXT("Is ready?"));
 
 	if (Barrel && bIsReloaded)
 	{
