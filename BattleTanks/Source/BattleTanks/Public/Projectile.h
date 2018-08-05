@@ -8,6 +8,7 @@
 #include "Projectile.generated.h"
 
 class UProjectileMovementComponent;
+class URadialForceComponent;
 
 UCLASS()
 class BATTLETANKS_API AProjectile : public AActor
@@ -18,9 +19,6 @@ public:
 	// Sets default values for this actor's properties
 	AProjectile();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	void LaunchProjectile(float Speed);
 
 protected:
@@ -29,11 +27,28 @@ protected:
 
 private:
 
+	void OnTimerExpire();
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float DestroyDelay = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float ProjectileDamage = 100.0f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* CollisionMesh = nullptr;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* LaunchBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	URadialForceComponent* ExplosionForce = nullptr;
 };
