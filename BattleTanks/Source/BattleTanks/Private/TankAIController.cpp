@@ -37,7 +37,7 @@ void ATankAIController::Tick(float DeltaTime)
 
 void ATankAIController::SetPawn(APawn* InPawn)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Setting Pawn"));
+	Super::SetPawn(InPawn);
 
 	if (InPawn)
 	{

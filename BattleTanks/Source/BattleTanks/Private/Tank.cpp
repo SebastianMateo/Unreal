@@ -18,8 +18,6 @@ void ATank::BeginPlay()
 
 float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController * EventInstigator, AActor * DamageCauser)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Taking Damage!"));
-
 	CurrentHealth -= DamageAmount;
 	FMath::Clamp<float>(CurrentHealth, 0, MaxHealth);
 
